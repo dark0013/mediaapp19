@@ -12,7 +12,7 @@ export class PatientService {
   constructor(private http: HttpClient) {}
 
   findAll() {
-    return this.http.get(this.url);
+    return this.http.get<Patient[]>(this.url);
   }
   findById(id: number) {
     return this.http.get(`${this.url}/${id}`);

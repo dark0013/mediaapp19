@@ -8,10 +8,12 @@ import { PatientService } from 'src/app/service/patient.service';
   styleUrls: ['./patient.component.css'],
 })
 export class PatientComponent implements OnInit {
-  private patient: Patient[] = [];
+  patient: Patient[] = [];
   constructor(private patientService: PatientService) {}
 
   ngOnInit(): void {
-    this.patientService.findAll();
+    this.patientService.findAll().subscribe(data =>{
+      this.patient = data
+    });
   }
 }
