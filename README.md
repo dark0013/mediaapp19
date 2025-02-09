@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+Nota:
+las importaciones usadas en esta version 6 son
+npm i xng-breadcrumb@6.8.1 -> compatible con angular 16 a versiones anteriores por que a la actualidad estamos en angular 19 y este codigo es con angular 16
