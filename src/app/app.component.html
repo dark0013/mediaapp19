@@ -1,66 +1,92 @@
 <div class="example-container">
-    <mat-toolbar color="primary" class="example-toolbar">
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
-        <mat-icon *ngIf="sidenav.opened">close</mat-icon>
-      </button>
-  
-      <span>MEDIAPP</span>
-      <span class="example-spacer"></span>
-  
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-    </mat-toolbar>
-  
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>account_box</mat-icon>
-        <span>My account</span>
-      </button>
-      <button mat-menu-item (click)="sidenav.close()">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Logout</span>
-      </button>
-    </mat-menu>
-  
-    <mat-sidenav-container class="example-sidenav-container">
-      <mat-sidenav #sidenav mode="over" class="example-sidenav">
-        <img src="assets/mitocode.png" width="128" class="logo" />
-  
-        <mat-divider></mat-divider>
-  
-        <button
-          mat-menu-item
-          class="myButton"
-          routerLink="/pages/search"
-          routerLinkActive="active"
-          (click)="sidenav.close()"
-        >
-          <mat-icon>search</mat-icon>
-          <span>Search</span>
-        </button>
-  
-        <mat-divider></mat-divider>
-  
-        <button
-          mat-menu-item
-          class="myButton"
-          routerLink="/pages/consult"
-          routerLinkActive="active"
-          (click)="sidenav.close()"
-        >
-          <mat-icon>insert_drive_file</mat-icon>
-          <span>Register Consult</span>
-        </button>
-  
-      </mat-sidenav>
-  
-      <mat-sidenav-content>
-        <!-- <xng-breadcrumb></xng-breadcrumb> -->
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </button>
 
-        <app-patient></app-patient>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
-  
+    <span>MEDIAPP</span>
+    <span class="example-spacer"></span>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>account_box</mat-icon>
+      <span>My account</span>
+    </button>
+    <button mat-menu-item (click)="sidenav.close()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #sidenav mode="over" class="example-sidenav">
+      <img src="assets/mitocode.png" width="128" class="logo" />
+
+      <mat-divider></mat-divider>
+
+      <button
+        mat-menu-item
+        class="myButton"
+        routerLink="/pages/search"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+      >
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
+      </button>
+      <mat-divider></mat-divider>
+
+      <button
+        mat-menu-item
+        class="myButton"
+        routerLink="/pages/patient"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+      >
+        <mat-icon>insert_drive_file</mat-icon>
+        <span>Patient</span>
+      </button>
+      <mat-divider></mat-divider>
+
+      <mat-divider></mat-divider>
+
+      <button
+        mat-menu-item
+        class="myButton"
+        routerLink="/pages/consult"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+      >
+        <mat-icon>insert_drive_file</mat-icon>
+        <span>Register Consult</span>
+      </button>
+      <mat-divider></mat-divider>
+
+      <button
+        mat-menu-item
+        class="myButton"
+        routerLink="/pages/medic"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+      >
+        <mat-icon>insert_drive_file</mat-icon>
+        <span>Medic</span>
+      </button>
+
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!-- <xng-breadcrumb></xng-breadcrumb> -->
+      <router-outlet></router-outlet>
+      <!--  <app-patient></app-patient>
+        <app-medic></app-medic> -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
