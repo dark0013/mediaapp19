@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Patient } from 'src/app/model/patient';
 import { PatientService } from 'src/app/service/patient.service';
 
-
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
@@ -25,20 +24,27 @@ export class PatientComponent implements OnInit {
 
   //@ViewChild => captura un componente del html
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort:MatSort;
+  @ViewChild(MatSort) sort: MatSort;
   //agregamos la inyección del metodo obtenido del services
   constructor(private patientService: PatientService) {}
 
   ngOnInit(): void {
+    this.patientService.patientChange.subscribe((data) => {
+      this.crateTable(data);
+    });
+
     this.patientService.findAll().subscribe((data) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.crateTable(data);
     });
   }
-//acción del filtro
+  //acción del filtro
   applyFilter(e: any) {
-    this.dataSource.filter = e.target.value.trim(); 
+    this.dataSource.filter = e.target.value.trim();
   }
 
+  crateTable(data: Patient[]) {
+    this.dataSource = new MatTableDataSource(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 }
