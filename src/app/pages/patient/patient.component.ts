@@ -29,9 +29,13 @@ export class PatientComponent implements OnInit {
   constructor(private patientService: PatientService) {}
 
   ngOnInit(): void {
-    this.patientService.patientChange.subscribe((data) => {
+    this.patientService.getPatientChange().subscribe((data) => {
       this.crateTable(data);
     });
+    //cuando es publica
+    /*  this.patientService.patientChange.subscribe((data) => {
+      this.crateTable(data);
+    }); */
 
     this.patientService.findAll().subscribe((data) => {
       this.crateTable(data);
@@ -46,5 +50,9 @@ export class PatientComponent implements OnInit {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+  mostrarAlerta() {
+    alert('vale');
+    console.log('vale');
   }
 }

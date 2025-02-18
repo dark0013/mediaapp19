@@ -10,7 +10,8 @@ import { Subject } from 'rxjs';
 export class PatientService {
   private url: string = `${environment.HOST}/patients`;
   //variable reactiva
-  public patientChange = new Subject<Patient[]>;
+  /* public patientChange = new Subject<Patient[]>; */
+  private patientChange = new Subject<Patient[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -30,5 +31,12 @@ export class PatientService {
   }
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
+  }
+  //cuando el sucject es privado
+  setPatientChange(data: Patient[]) {
+    this.patientChange.next(data);
+  }
+  getPatientChange() {
+    return this.patientChange.asObservable();
   }
 }
