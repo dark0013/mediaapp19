@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { switchMap } from 'rxjs';
@@ -27,11 +28,18 @@ export class PatientComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   //agregamos la inyección del metodo obtenido del services
-  constructor(private patientService: PatientService) {}
+  constructor(
+    private patientService: PatientService,
+    private _snackbar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.patientService.getPatientChange().subscribe((data) => {
       this.crateTable(data);
+    });
+
+    this.patientService.getMesaggeChange().subscribe((data) => {
+      this._snackbar.open(data, 'INFO', { duration: 2000 });
     });
     //cuando es publica
     /*  this.patientService.patientChange.subscribe((data) => {
@@ -53,21 +61,22 @@ export class PatientComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-delete(idPatient:number){
-  this.patientService.delete(idPatient).pipe(switchMap(_=>{
-    return this.patientService.findAll()
-  }))
-  .subscribe(data=>{
-    this.patientService.setPatientChange(data);
-  })
-}
+  delete(idPatient: number) {
+    this.patientService
+      .delete(idPatient)
+      .pipe(
+        switchMap((_) => {
+          return this.patientService.findAll();
+        })
+      )
+      .subscribe((data) => {
+        this.patientService.setPatientChange(data);
+        this.patientService.setMesaggeChange('Deleted!!');
+      });
+  }
 
   mostrarAlerta() {
     alert('vale');
     console.log('vale');
   }
-
-
-
-
 }

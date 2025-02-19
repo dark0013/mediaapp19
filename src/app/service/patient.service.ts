@@ -12,6 +12,7 @@ export class PatientService {
   //variable reactiva
   /* public patientChange = new Subject<Patient[]>; */
   private patientChange = new Subject<Patient[]>();
+  private messageChange = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 
@@ -38,5 +39,11 @@ export class PatientService {
   }
   getPatientChange() {
     return this.patientChange.asObservable();
+  }
+  setMesaggeChange(data: string) {
+    this.messageChange.next(data);
+  }
+  getMesaggeChange() {
+    return this.messageChange.asObservable();
   }
 }

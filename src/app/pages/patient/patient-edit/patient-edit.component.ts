@@ -83,6 +83,7 @@ export class PatientEditComponent implements OnInit {
           //se usa cuando es publica
         /*   this.patientServices.patientChange.next(data); */
         this.patientServices.setPatientChange(data);
+        this.patientServices.setMesaggeChange("Update!!");
         });
       });
     } else {
@@ -97,6 +98,7 @@ export class PatientEditComponent implements OnInit {
            //se usa cuando es publica
           /* this.patientServices.patientChange.next(data); */
           this.patientServices.setPatientChange(data)
+          this.patientServices.setMesaggeChange("Created!!");
         });
     }
     this.redirecciona.navigate(['/pages/patient']);
