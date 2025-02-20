@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>uso del titulor</h2>
+<mat-dialog-content>
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="primary Name"
+        [(ngModel)]="medic.primaryname"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="surName" [(ngModel)]="medic.surname" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="smp" [(ngModel)]="medic.cmpmedic" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="photo" [(ngModel)]="medic.photo" />
+    </mat-form-field>
+
+    <img
+      mat-card-image
+      [src]="medic.photo"
+      width="50%"
+      height="50%"
+      *ngIf="medic.photo"
+      alt=""
+    />
+  </div>
+
+  <button mat-raised-button color="primary" (click)="operate()">Done</button>
+  <button mat-raised-button color="accent" (click)="close()">Cancel</button>
+</mat-dialog-content>
