@@ -3,36 +3,21 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Medic } from '../model/medic';
 import { Subject } from 'rxjs';
+import { GenericServicesService } from './generic-services.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MedicService {
-  private url: string = `${environment.HOST}/medic`;
+export class MedicService extends GenericServicesService<Medic> {
+  /* private url: string = `${environment.HOST}/medic`; */
   //variable reactiva
   /* public medicChange = new Subject<Medic[]>; */
   private medicChange = new Subject<Medic[]>();
   private messageChange = new Subject<string>();
-
-  constructor(private http: HttpClient) {}
-
-  findAll() {
-    return this.http.get<Medic[]>(this.url);
-  }
-  findById(id: number) {
-    return this.http.get(`${this.url}/${id}`);
+  constructor(protected override http: HttpClient) {
+    super(http, `${environment.HOST}/medic`);
   }
 
-  save(medic: Medic) {
-    return this.http.post(this.url, medic);
-  }
-
-  update(medic: Medic) {
-    return this.http.put(`${this.url}/${medic.idMedic}`, medic);
-  }
-  delete(id: number) {
-    return this.http.delete(`${this.url}/${id}`);
-  }
   //cuando el sucject es privado
   setMedicChange(data: Medic[]) {
     this.medicChange.next(data);

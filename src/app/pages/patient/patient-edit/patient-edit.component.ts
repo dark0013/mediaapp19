@@ -78,12 +78,12 @@ export class PatientEditComponent implements OnInit {
     };
     */
     if (this.isEdit) {
-      this.patientServices.update(patient).subscribe((data) => {
+      this.patientServices.update(patient, this.id).subscribe((data) => {
         this.patientServices.findAll().subscribe((data) => {
           //se usa cuando es publica
-        /*   this.patientServices.patientChange.next(data); */
-        this.patientServices.setPatientChange(data);
-        this.patientServices.setMesaggeChange("Update!!");
+          /*   this.patientServices.patientChange.next(data); */
+          this.patientServices.setPatientChange(data);
+          this.patientServices.setMesaggeChange('Update!!');
         });
       });
     } else {
@@ -95,10 +95,10 @@ export class PatientEditComponent implements OnInit {
           })
         )
         .subscribe((data) => {
-           //se usa cuando es publica
+          //se usa cuando es publica
           /* this.patientServices.patientChange.next(data); */
-          this.patientServices.setPatientChange(data)
-          this.patientServices.setMesaggeChange("Created!!");
+          this.patientServices.setPatientChange(data);
+          this.patientServices.setMesaggeChange('Created!!');
         });
     }
     this.redirecciona.navigate(['/pages/patient']);

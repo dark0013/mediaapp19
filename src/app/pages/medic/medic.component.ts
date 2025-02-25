@@ -7,6 +7,7 @@ import { switchMap } from 'rxjs';
 import { Medic } from 'src/app/model/medic';
 import { MedicService } from 'src/app/service/medic.service';
 import { MedicDialogComponent } from './medic-dialog/medic-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-medic',
@@ -27,11 +28,20 @@ export class MedicComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(
     private medicService: MedicService,
-    private _matDialog: MatDialog
+    private _matDialog: MatDialog,
+    private _snackbar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.medicService.findAll().subscribe((data) => {
       this.crateTable(data);
+    });
+
+    this.medicService
+      .getMedicChange()
+      .subscribe((data) => this.crateTable(data));
+
+    this.medicService.getMesaggeChange().subscribe((data) => {
+      this._snackbar.open(data, 'INFO', { duration: 2000 });
     });
   }
 
@@ -49,10 +59,9 @@ export class MedicComponent implements OnInit {
     this._matDialog.open(MedicDialogComponent, {
       width: '250px',
       data: medic,
-       disableClose: true,
+      disableClose: true,
     });
   }
- 
 
   delete(idMedic: number) {
     this.medicService
