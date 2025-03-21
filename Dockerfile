@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Instalar las dependencias del proyecto
-RUN npm install
+#RUN npm install
+RUN npm install -g @angular/cli@16 && npm install
 
 # Copiar el resto de los archivos del proyecto (incluyendo los archivos de entorno)
 COPY . .
