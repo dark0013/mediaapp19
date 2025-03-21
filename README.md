@@ -30,3 +30,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Nota:
 las importaciones usadas en esta version 6 son
 npm i xng-breadcrumb@6.8.1 -> compatible con angular 16 a versiones anteriores por que a la actualidad estamos en angular 19 y este codigo es con angular 16
+
+creo una imagen de docker
+## docker build -t mediaapp19 .
+
+runea el contenedor
+## docker run -p 4200:4200 mediaapp19
+
+veo información de la imagen de docker
+ ## docker images
+
+ veo información de todos los contenedores de docker
+ ## docker ps
+
+ mata el procedo del contenedor
+ docker stop <CONTAINER_ID>
